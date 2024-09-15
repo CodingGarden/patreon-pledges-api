@@ -40,6 +40,21 @@ class YouTubeChatService {
     created.user = user;
     return [created];
   }
+
+  async patch(id, updates) {
+    const updated = await youtubeChats.findOneAndUpdate(
+      {
+        id,
+      },
+      {
+        $set: updates,
+      },
+      {
+        upsert: true,
+      }
+    );
+    return updated;
+  }
 }
 
 module.exports = YouTubeChatService;
